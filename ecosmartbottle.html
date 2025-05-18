@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EcoSmart Water Bottle</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            background-color: #f5f5f5;
+
+        }
+
+        header {
+
+            position: sticky;
+
+            top: 0;
+
+            background-color: #c71585;
+
+            color: white;
+
+            padding: 10px 0;
+
+            text-align: center;
+
+            z-index: 1000;
+
+        }
+
+        nav a {
+
+            margin: 0 15px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+        .main {
+
+            background-color: #ffe7eb;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+        }
+
+        .product-image {
+
+            width: 200px;
+
+            height: 200px;
+
+            background-color:#ffc0cb;
+
+            display: inline-block;
+
+            margin-bottom: 20px;
+
+        }
+
+        .btn {
+
+            padding: 10px 20px;
+
+            background-color: #db7093;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+
+            margin-bottom: 10px;
+
+        }
+
+        .price-display {
+
+            font-size: 20px;
+
+            margin: 20px 0;
+
+        }
+
+        #popup {
+
+            display: none;
+
+            position: fixed;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background-color: white;
+
+            padding: 20px;
+
+            border: 1px solid #ccc;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .footer {
+
+            background-color: #c71585;
+
+            color: white;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+        }
+
+        .footer input, .footer textarea {
+
+            width: 250px;
+
+            margin: 5px 0;
+
+            padding: 10px;
+
+        }
+
+        .footer button {
+
+            background-color:#db7093;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body><header>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#pricing">Pricing</a>
+
+        <a href="#contact">Contact Us</a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="main" id="home">
+
+    <h1>EcoSmart Water Bottle</h1>
+
+    <div id="product-image" class="product-image"><img src="eco.jpg"  width=200 height=200 alt="Product Image"></div>
+
+    <p>EcoSmart Water Bottle</p>
+
+    <button class="btn" onclick="openPopup()">Buy Now</button>
+
+    <div class="price-display">Total Price: R<span id="totalPrice">750.00</span></div>
+
+</section>
+
+
+
+<div id="popup">
+
+    <h3>Select Product Options</h3>
+
+    <label>Color:</label><br>
+
+    <select id="colorSelect" onchange="updatePrice()">
+
+        <option value="0">Standard (No Extra Cost)</option>
+
+        <option value="50">Blue (+R50)</option>
+
+        <option value="65">pink (+R65)</option>
+
+        <option value="75">Red (+R75)</option>
+
+    </select><br><br>
+
+    <label><input type="checkbox" value="100" onchange="updatePrice()"> Custom Engraving (+R100)</label><br>
+
+    <label><input type="checkbox" value="50" onchange="updatePrice()"> Premium Packaging (+R50)</label><br><br>
+
+    <button class="btn" onclick="closePopup()">Close</button>
+
+</div>
+
+
+
+<section class="footer" id="contact">
+
+    <h2>Contact Us</h2>
+
+    <input type="text" placeholder="Your Name"><br>
+
+    <input type="email" placeholder="Your Email"><br>
+
+    <textarea rows="4" placeholder="Your Message"></textarea><br>
+
+    <label><input type="checkbox" id="terms"> I agree to the <a href="#" style="color: lightblue;">Terms and Conditions</a></label><br>
+
+    <button onclick="submitForm()">Submit</button>
+
+</section>
+
+
+
+<script>
+
+    let basePrice = 750;
+
+
+
+    function openPopup() {
+
+        document.getElementById('popup').style.display = 'block';
+
+    }
+
+
+
+    function closePopup() {
+
+        document.getElementById('popup').style.display = 'none';
+
+    }
+
+
+
+    function updatePrice() {
+
+        let colorPrice = parseInt(document.getElementById('colorSelect').value);
+
+        let checkboxes = document.querySelectorAll('#popup input[type="checkbox"]');
+
+        let extras = 0;
+
+        checkboxes.forEach(cb => {
+
+            if (cb.checked) extras += parseInt(cb.value);
+
+        });
+
+        let total = basePrice + colorPrice + extras;
+
+        document.getElementById('totalPrice').textContent = total.toFixed(2);
+
+    }
+
+
+
+    function submitForm() {
+
+        const termsChecked = document.getElementById('terms').checked;
+
+        if (!termsChecked) {
+
+            alert('You must agree to the Terms and Conditions.');
+
+        } else {
+
+            alert('Form submitted successfully!');
+
+        }
+
+    }
+
+</script>
+
+
+
+</body>
+
+</html>
