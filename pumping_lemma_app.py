@@ -84,6 +84,7 @@ with st.sidebar:
         <li>Renathe Mwengere Kayunde</li>
         <li>Zianah Ningiree Tjitendero</li>
         <li>Laina Ndasilohenda Iileka</li>
+        <li>Catherine Beukes</li>
     </ol>
     <div style='margin-top: 20px; text-align: center;'>
         <p><strong>Computer Theory</strong></p>
